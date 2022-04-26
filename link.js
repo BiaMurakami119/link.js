@@ -1,24 +1,9 @@
-class Link{
-    constructor(bodyA,bodyB)
-    {
-      var lastlink = bodyA.body.bodies.length-2;
-     this.link = Constraint.create(
-        {
-          bodyA:bodyA.body.bodies[lastlink],
-          pointA:{x:0,y:0},
-          bodyB:bodyB,
-          pointB:{x:0,y:0},
-          length:-10,
-          stiffness:0.01
-        });
-        World.add(engine.world,this.link);
-    } 
-
-    dettach()
-    {
-      World.remove(engine.world,this.link);
-     
-    }
-}
-
-
+shoot() {
+   var newAngle = cannon.angle - 28;
+    newAngle = newAngle *(3.14/180)
+    var velocity = p5.Vector.fromAngle(newAngle);
+    velocity.mult(0.5);
+    Matter.Body.setStatic(this.body, false);
+    Matter.Body.setVelocity(this.body, {
+      x: velocity.x *(180/3.14), y: velocity.y * (180/3.14)})
+  }
